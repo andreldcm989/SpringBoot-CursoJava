@@ -11,11 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity /*especificação do JPA, e não a implementação*/
 @Table(name = "tb_user")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+    
 	@Id /*indica a PK da minha tabela*/
     @GeneratedValue(strategy=GenerationType.IDENTITY) /*indica que a PK é auto incremental no BD*/
     private Long id;
@@ -25,6 +27,7 @@ public class User implements Serializable {
     private String phone;
     private String password;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "client") //um para muitos, mapeado por client
     private List<Order> orders = new ArrayList<>();
 
