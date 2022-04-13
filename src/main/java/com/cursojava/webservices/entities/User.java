@@ -2,9 +2,19 @@ package com.cursojava.webservices.entities;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity /*especificação do JPA, e não a implementação*/
+public class User implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id /*indica a PK da minha tabela*/
+    @GeneratedValue(strategy=GenerationType.IDENTITY) /*indica que a PK é auto incremental no BD*/
     private Long id;
+    
     private String name;
     private String email;
     private String phone;
