@@ -3,6 +3,8 @@ package com.cursojava.webservices.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import com.cursojava.webservices.entities.User;
 import com.cursojava.webservices.repositories.UserRepository;
 import com.cursojava.webservices.services.exceptions.DatabaseException;
@@ -43,9 +45,13 @@ public class UserService {
     }
 
     public User update(Long id, User obj){
+        try{
         User entity = repository.getById(id);
         UpdateData(entity, obj);
         return repository.save(entity);
+        } catch(EntityNotFoundException e){
+            throw new ResourceNotFoundException(id);
+        }
     }
 
     private void UpdateData(User entity, User obj) {
