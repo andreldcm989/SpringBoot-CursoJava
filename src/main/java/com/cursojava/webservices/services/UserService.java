@@ -24,6 +24,10 @@ public class UserService {
         return obj.get();
     }
 
+    public User insert(User obj){
+        return repository.save(obj);
+    }
+
 
 }
 //para usar uma classe com o mecanismo de injeção e dependência do framework,
