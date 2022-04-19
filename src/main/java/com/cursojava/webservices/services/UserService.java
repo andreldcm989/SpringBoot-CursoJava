@@ -28,6 +28,10 @@ public class UserService {
         return repository.save(obj);
     }
 
+    public void delete(Long id){
+        repository.deleteById(id);
+    }
+
 
 }
 //para usar uma classe com o mecanismo de injeção e dependência do framework,
